@@ -1,22 +1,33 @@
 $(document).ready(function () {
+    function search(videogame) {
+        var APIkey = "OhxnQpyEjD8FLglH3MjDscrOuNXE3hwD";
+        //var videogame = $(this).attr("data-name");
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + videogame + "&api_key=" + APIkey + "&limit=10";
 
-    var APIkey = "OhxnQpyEjD8FLglH3MjDscrOuNXE3hwD";
-    var videogame = $(this).attr("data-name");
-    var queryURL = ("http://api.giphy.com/v1/gifs/search?q=" + videogame + "&api_key=" + APIkey + "&limit=10");
+        
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            // After data comes back from the request
+            .then(function (response) {
+                console.log(queryURL);
+                console.log(response);
+                var results = response.data;
+                for (var i = 0; i < results.length; i++) {
+                    var videogameDiv = $("<div>");
 
+                    var videogameImage = $("<img>");
+                    videogameImage.attr("src", results[i].images.fixed_height.url);
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        // After data comes back from the request
-        .then(function (response) {
-            console.log(queryURL);
-            console.log(response);
-        });
+                    videogameDiv.append(videogameImage);
+
+                    $("#vgs-view").prepend(videogameDiv);
+                }
+            });
+    };
     var vgs = ["Dota 2", "Dark Souls", "Final Fantasy 7", "Nier", "Chrono Cross", "Diablo 2", "WarCraft 3: The Frozen Throne"];
 
-    // Function for displaying movie data
     function renderButtons() {
 
         // Deleting the movie buttons prior to adding new movie buttons
@@ -50,8 +61,10 @@ $(document).ready(function () {
         vgs.push(vg);
 
         // calling renderButtons which handles the processing of our movie array
-        renderButtons();
+        renderButtons(search(vg));
+ 
     });
-    renderButtons();
+
+renderButtons();
 
 });
