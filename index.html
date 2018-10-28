@@ -2,39 +2,34 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Very Awesome Video Games</title>
-    <style type="text/css">
-        button,
-        div,
-        form,
-        input {
-          margin: 10px;
-        }
-      </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="assets/javascript/app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Very Awesome Video Games</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
 </head>
 
 <body>
-        <div class="container">
-                <h1>Very Awesome Video Games</h1>
-               
-                
-                
-            
-                <form id="vg-form">
-                  <label for="vg-input">Add Some Of Your Faves:</label>
-                  <input type="text" id="vg-input"><br>
-            
-                  <!-- Button triggers new movie to be added -->
-                  <input id="add-vg" type="submit" value="Show Me!">
-                </form>
-                <!-- Movies will get dumped here -->
-                <div id="vgs-view"></div>
-</div>
+  <div class="container">
+    <h1>Very Awesome Video Games</h1>
+    <form id="vg-form">
+      <label for="vg-input">Add Some Of Your Faves:</label>
+      <input type="text" id="vg-input"><br>
+      <input id="add-vg" type="submit" value="Show Me!">
+    </form>
+    <div id="vgs-render"></div>
+    <div class="vgs-button"></div>
+  </div>
+  <div id="gif-view"></div>
 </body>
 
 </html>
