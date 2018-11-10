@@ -4,7 +4,7 @@ $(document).ready(function () {
     function search(videogame) {
         var APIkey = "OhxnQpyEjD8FLglH3MjDscrOuNXE3hwD";
         var videogame = $(this).attr("data-name");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + videogame + "&api_key=" + APIkey + "&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + videogame + "&api_key=" + APIkey + "&limit=10";
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -15,14 +15,13 @@ $(document).ready(function () {
                 var results = response.data;
                 for (var i = 0; i < results.length; i++) {
                     var videogameDiv = $("<div>");
-                    var videogameImage = $("<img>");
-                    videogameImage.attr("src", results[i].images.fixed_height.url);
+                    var videogameImage = $("<img data-still= "+results[i]+" data-animate= "+results[i]+" data-state='still' class='gif'>");
+                    videogameImage.attr("src", results[i].images.fixed_height.url, "data-state='still'");
                     videogameDiv.append(videogameImage);
                     $("#gif-view").prepend(videogameDiv);
                 }
             });
     };
-
     function renderButtons() {
         $("#vgs-render").empty();
         for (var i = 0; i < vgs.length; i++) {
@@ -44,7 +43,16 @@ $(document).ready(function () {
     }
     renderButtons();
     displayVideoGames();
-
+    $(".gif").on("click", function() {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("data-animate"));
+          $(this).attr("data-state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("data-still"));
+          $(this).attr("data-state", "still");
+        }
+      });
 
 
 });
