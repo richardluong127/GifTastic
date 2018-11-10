@@ -2,7 +2,7 @@ $(document).ready(function () {
     var vgs = ["Dota 2", "Dark Souls", "Final Fantasy 7", "Nier", "Chrono Cross", "Diablo 2", "WarCraft 3: The Frozen Throne"];
 
     function search(videogame) {
-        var APIkey = "OhxnQpyEjD8FLglH3MjDscrOuNXE3hwD";
+        var APIkey = "L2l0fwskUtVRoP7NK47tr3x6fOM1ALyZ";
         var videogame = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + videogame + "&api_key=" + APIkey + "&limit=10";
         $.ajax({
